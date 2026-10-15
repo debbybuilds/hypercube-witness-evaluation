@@ -1,0 +1,16 @@
+{
+  "attempt_id": "REPLACE_WITH_UNIQUE_ATTEMPT_ID",
+  "slot_id": "REPLACE_WITH_SCHEDULE_SLOT_ID",
+  "provider": "REPLACE_WITH_ACTUAL_PROVIDER",
+  "model_id": "REPLACE_WITH_EXACT_MODEL_IDENTIFIER",
+  "timestamp_utc": "REPLACE_WITH_ACTUAL_ISO_8601_UTC_TIMESTAMP",
+  "requested_settings": null,
+  "returned_settings": null,
+  "prompt_sha256": "REPLACE_WITH_SCHEDULE_PROMPT_SHA256",
+  "tool_policy": "none",
+  "fresh_context": true,
+  "status": "received",
+  "raw": "REPLACE_WITH_EXACT_RESPONSE_TEXT",
+  "error": null,
+  "replaces_attempt_id": null
+}

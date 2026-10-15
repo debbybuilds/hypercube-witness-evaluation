@@ -1,0 +1,7 @@
+{
+  "status": "unconfigured; no model calls made",
+  "model_a": {"provider": null, "model_id": null, "requested_settings": null},
+  "model_b": {"provider": null, "model_id": null, "requested_settings": null},
+  "tool_policy": "none",
+  "fresh_context": true
+}
