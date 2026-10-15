@@ -1,0 +1,19 @@
+Consider the 3-dimensional hypercube. Vertices are binary strings of length 3; adjacent vertices differ in exactly one bit. The antipode of a vertex complements every bit. Edges are undirected. Each edge has color 0 or 1; antipodal edges have opposite colors.
+
+Find a simple path joining ANY vertex to its antipode, with all path edges having the same color. Every consecutive pair must be an edge in the list below. Do not repeat vertices. The path need not be shortest.
+
+Complete edge list (vertex vertex color):
+000 001 0
+000 010 1
+000 100 0
+001 011 0
+001 101 1
+010 011 0
+010 110 0
+011 111 1
+100 101 1
+100 110 1
+101 111 0
+110 111 1
+
+Return only a JSON object with one key, "path", containing the vertex sequence as fixed-width binary strings. Schematic format: {"path":["<vertex>","..."]}. Replace the placeholders with your path. Do not include explanations or Markdown.

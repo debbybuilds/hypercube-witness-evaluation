@@ -96,4 +96,4 @@
 
 ## Plan review
 
-Native implementation is recommended: these four tasks share small, tightly coupled data contracts, and no external integration is required. Implementation awaits the user's review and execution choice. No subagents are authorized by this document alone.
+Native implementation is recommended: these four tasks share small, tightly coupled data contracts, and no external integration is required. The user approved native implementation after clarifying fresh authorship. No subagents are authorized by this document alone.

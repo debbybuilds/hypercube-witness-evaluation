@@ -1,0 +1,57 @@
+"""Offline commands. No provider SDKs, credentials or network requests."""
+import argparse
+from pathlib import Path
+from .dataset import load_dataset
+from .generation import build_dataset, json_bytes, digest
+from .scoring import strict_json, summarize
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Generate and verify the hypercube LLM pilot locally.')
+    commands = parser.add_subparsers(dest='command', required=True)
+    generate = commands.add_parser('generate')
+    generate.add_argument('--output', type=Path, default=Path('data'))
+    verify = commands.add_parser('verify')
+    verify.add_argument('--dataset', type=Path, default=Path('data'))
+    score = commands.add_parser('score')
+    score.add_argument('--dataset', type=Path, default=Path('data'))
+    score.add_argument('--attempts', type=Path, default=Path('responses/attempts.jsonl'))
+    score.add_argument('--models', type=Path, default=Path('responses/model-config.json'))
+    score.add_argument('--output', type=Path, default=Path('results/summary.json'))
+    args = parser.parse_args()
+    try:
+        if args.command == 'generate':
+            manifest = build_dataset(args.output)
+            print(f'Generated {len(manifest["instances"])} instances; no model responses collected.')
+            return
+        manifest, instances, schedule = load_dataset(args.dataset)
+        if args.command == 'verify':
+            print(json_bytes({'instances':len(instances),'prompts':len(instances),
+                              'reference_paths':len(instances),'planned_responses':len(schedule),
+                              'status':'all artifacts checked; no model performance implied'}).decode(),end='')
+            return
+        attempts = [strict_json(line) for line in args.attempts.read_text(encoding='utf-8').splitlines() if line.strip()]
+        if attempts:
+            models = strict_json(args.models.read_text(encoding='utf-8'))
+            slots = {s['slot_id']:s for s in schedule}
+            for a in attempts:
+                if type(a) is not dict or a.get('slot_id') not in slots:
+                    raise ValueError('unknown or missing slot_id')
+                config = models.get(slots[a['slot_id']]['model'])
+                if type(config) is not dict or not config.get('provider') or not config.get('model_id'):
+                    raise ValueError('configure exact provider/model identifiers before scoring collected attempts')
+                if (a.get('provider'),a.get('model_id')) != (config['provider'],config['model_id']):
+                    raise ValueError('attempt identity differs from frozen model configuration')
+        result = summarize(schedule,attempts,instances)
+        result['dataset_manifest_sha256'] = digest((args.dataset/'manifest.json').read_bytes())
+        result['attempts_sha256'] = digest(args.attempts.read_bytes())
+        result['model_config_sha256'] = digest(args.models.read_bytes()) if attempts else None
+        args.output.parent.mkdir(parents=True,exist_ok=True)
+        args.output.write_bytes(json_bytes(result))
+        print(f'{result["measurement_status"]}; summary saved to {args.output}')
+    except (OSError,ValueError,KeyError,TypeError,AttributeError) as exc:
+        parser.error(str(exc))
+
+
+if __name__ == '__main__':
+    main()
