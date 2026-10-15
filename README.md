@@ -80,4 +80,4 @@ Generation uses seed `hypercube-pilot-v1`. Each canonical antipodal edge pair re
 
 The research direction, collection and thesis background belong to the researcher; design, implementation, testing and writing were developed with AI assistance. The material is provided for inspection and explanation, not represented as entirely unaided authorship or a novel theorem. See [provenance](docs/provenance.md).
 
-This is a standalone local repository prepared for publication. It has not been published to GitHub. No license has been selected; this version does not grant reuse permission. A larger study should use a separate, prospectively frozen protocol if its expected value justifies the collection cost.
+Project repository: [debbybuilds/hypercube-witness-evaluation](https://github.com/debbybuilds/hypercube-witness-evaluation). No license has been selected; this version does not grant reuse permission. A larger study should use a separate, prospectively frozen protocol if its expected value justifies the collection cost.

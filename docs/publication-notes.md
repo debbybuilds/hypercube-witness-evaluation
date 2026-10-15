@@ -1,14 +1,14 @@
 # Publication preparation
 
-Suggested repository name: `hypercube-witness-evaluation`
+Repository name: `hypercube-witness-evaluation`
 
-Suggested description: “Thesis-connected pilot evaluating LLM-generated hypercube paths, with independent verification, preserved response evidence and reproducible scoring.”
+Repository description: “Thesis-connected pilot evaluating LLM-generated hypercube paths, with independent verification, preserved response evidence and reproducible scoring.”
 
 The local project directory remains `hypercube-llm-evaluation`; no rename is required to use the suggested GitHub name.
 
 ## Current state
 
-This is a standalone local Git repository. No GitHub remote has been configured and this project has not been published. The separate `llm-graph-coloring-audit` repository is a different study.
+The user approved public publication on 15 October 2026. Public repository: [debbybuilds/hypercube-witness-evaluation](https://github.com/debbybuilds/hypercube-witness-evaluation). The separate `llm-graph-coloring-audit` repository is a different study.
 
 The source files, raw pasted responses, amendments, correction history, report and audit outputs are prepared for review. The author has not selected a reuse license. AI assistance and the distinction from third-party thesis reproduction are documented in `docs/provenance.md`.
 
