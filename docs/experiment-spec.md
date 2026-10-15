@@ -65,3 +65,9 @@ Deliver a standalone local repository with README, protocol, generator, instance
 ## Limitations
 
 Small dimensions may produce ceiling performance. An invalid model path does not establish a general reasoning mechanism. Generation and verifier code are AI-assisted and must be tested; computational checks are not a replacement for mathematical proof. The thesis's ordinary-path and geodesic formulations must remain distinct. A larger or adversarial study is a later protocol revision, not an unrecorded change to this pilot.
+
+## Pre-collection amendment: manual app identities
+
+Before any responses were collected, the user selected manual collection and reported the app-selector labels ChatGPT `GPT 6` and Claude `Sonnet 5.5`. These are user-reported display labels, not externally verified provider identifiers. Use collection mode `manual_app`, model_a/OpenAI/GPT 6 and model_b/Anthropic/Sonnet 5.5. Exact model_id remains null; identity_resolution is `display_label_only`. Preserve the exact label on every attempt and reject label changes within the same model slot. Unknown requested/returned settings remain null. Freeze and retain this configuration before collection.
+
+This is an exploratory manual-app variant of the pilot, not an exact-version/API comparison. Reports must state that model versions, hidden settings and app context controls are not independently confirmed. The graphs, prompts, trial schedule, mathematical checks and denominator policy are unchanged. If exact identifiers become available later, record them in a separately documented cohort rather than silently pooling or relabeling earlier responses.

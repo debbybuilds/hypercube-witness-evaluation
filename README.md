@@ -2,7 +2,7 @@
 
 A thesis-connected evaluation pilot asking whether language models can construct valid mathematical witnesses on small hypercubes, with every submitted path checked directly.
 
-**Status: local pilot toolkit built; no model responses collected and no model performance results yet.** There are 20 fixed instances, separate reference paths, and a randomized schedule for 120 planned responses. This is a newly implemented project, not a fork or wrapper of the SAT repository used for part of the thesis's computational reproduction.
+**Status: local pilot toolkit built; manual-app labels selected; no model responses collected and no model performance results yet.** There are 20 fixed instances, separate reference paths, and a randomized schedule for 120 planned responses. This is a newly implemented project, not a fork or wrapper of the SAT repository used for part of the thesis's computational reproduction.
 
 ## Why this study
 
@@ -45,12 +45,12 @@ File hashes and accepted/excluded candidates are in `data/manifest.json`. Schedu
 
 ## Collect responses
 
-1. Select two models and fill in `responses/model-config.json` with actual provider names, exact model identifiers, and requested settings. Product names alone are insufficient. Freeze and retain that configuration before collection. Unknown settings are null. If a provider does not expose an exact model identifier, do not present that collection as the fully controlled pilot.
+1. The user selected manual collection with user-reported app labels **GPT 6** (ChatGPT/OpenAI) and **Sonnet 5.5** (Claude/Anthropic). The saved configuration uses `collection_mode: "manual_app"`, `identity_resolution: "display_label_only"`, the literal `display_label`, and `model_id: null`. Unknown settings are null. Freeze and retain this configuration before collection. This exploratory variant cannot identify exact underlying model versions or hidden app settings. An exact-version study instead requires provider-supplied identifiers and a separately documented configuration; never invent an ID from a display label.
 2. Follow `data/schedule.json` in order. For each slot, open a fresh context, disable tools and browsing, and send the exact matching file from `data/prompts/`. Do not send reference paths, previous responses, hints or correctness feedback.
-3. Capture the **complete raw response**, exact identifier, actual UTC timestamp, requested/returned settings, prompt hash, and context/tool policy. Preserve refusals and truncated or malformed responses as received outcomes. Do not delete failures or retry received answers.
+3. Capture the **complete raw response**, displayed label and identity-resolution status, actual UTC timestamp, requested/returned settings, prompt hash, and context/tool policy. Preserve refusals and truncated or malformed responses as received outcomes. Do not delete failures or retry received answers.
 4. Copy the field structure from `responses/attempt-template.json`, replace every placeholder, and append one compact JSON object per line to `responses/attempts.jsonl`. The template is documentation, not a trial record. Raw responses may contain newlines encoded as `\n` within the JSON string. Do not manually normalize responses into JSON answers.
 5. For a transport failure, record `status: "transport_error"`, `raw: null`, and an error description without credentials or private request data. A replacement must have a new attempt ID and point to the immediately preceding failed attempt using `replaces_attempt_id`. Only transport failures may be replaced; keep the whole chain in file order.
-6. Run scoring. Nonempty collections require both model slots to be configured and must match the frozen model identifiers and requested settings exactly (including null when unknown). Returned settings are retained separately and are not assumed to equal requested settings. For another config location use `--models PATH`. Scoring rejects unknown slots, mismatched prompt hashes, duplicate attempt IDs, changed model identifiers and unlinked retries.
+6. Run scoring. Nonempty collections require both model slots to be configured and must match their frozen identity records and requested settings exactly (including null when unknown). Manual-app records preserve display labels and null exact IDs, and the report explicitly carries the identification limitation. Returned settings are retained separately and are not assumed to equal requested settings. For another config location use `--models PATH`. Scoring rejects unknown slots, mismatched prompt hashes, duplicate attempt IDs, changed model identifiers and unlinked retries.
 
 The toolkit makes no API calls and does not automate collection. Public instances can become contaminated; run the pilot without external retrieval, record the conditions, and disclose public exposure in future reuse.
 

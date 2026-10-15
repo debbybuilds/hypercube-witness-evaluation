@@ -1,7 +1,22 @@
 {
-  "status": "unconfigured; no model calls made",
-  "model_a": {"provider": null, "model_id": null, "requested_settings": null},
-  "model_b": {"provider": null, "model_id": null, "requested_settings": null},
+  "status": "manual app pilot; display labels recorded, exact provider model identifiers unverified; no responses collected",
+  "model_a": {
+    "provider": "OpenAI",
+    "model_id": null,
+    "display_label": "GPT 6",
+    "label_source": "user-reported app model selector",
+    "requested_settings": null,
+    "identity_resolution": "display_label_only"
+  },
+  "model_b": {
+    "provider": "Anthropic",
+    "model_id": null,
+    "display_label": "Sonnet 5.5",
+    "label_source": "user-reported app model selector",
+    "requested_settings": null,
+    "identity_resolution": "display_label_only"
+  },
   "tool_policy": "none",
-  "fresh_context": true
+  "fresh_context": true,
+  "collection_mode": "manual_app"
 }

@@ -7,6 +7,8 @@
       "n": 3,
       "provider": null,
       "model_id": null,
+      "identity_resolution": null,
+      "display_label": null,
       "planned": 30,
       "received": 0,
       "never_attempted": 30,
@@ -26,6 +28,8 @@
       "n": 4,
       "provider": null,
       "model_id": null,
+      "identity_resolution": null,
+      "display_label": null,
       "planned": 30,
       "received": 0,
       "never_attempted": 30,
@@ -45,6 +49,8 @@
       "n": 3,
       "provider": null,
       "model_id": null,
+      "identity_resolution": null,
+      "display_label": null,
       "planned": 30,
       "received": 0,
       "never_attempted": 30,
@@ -64,6 +70,8 @@
       "n": 4,
       "provider": null,
       "model_id": null,
+      "identity_resolution": null,
+      "display_label": null,
       "planned": 30,
       "received": 0,
       "never_attempted": 30,
@@ -80,7 +88,9 @@
     }
   ],
   "attempts": [],
+  "collection_mode": "manual_app",
+  "identity_limitation": "App display labels are user-reported; exact model versions and hidden app settings remain unverified.",
   "dataset_manifest_sha256": "c8b699d4d4fbd6838be58a5cfe550f1f82f1453def19d24bc7e52e6d241b7482",
   "attempts_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "model_config_sha256": null
+  "model_config_sha256": "3628201f2ab34f37f4935addf1333db49f05d91548a4dab3759517fb80f42022"
 }

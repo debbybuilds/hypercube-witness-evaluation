@@ -42,12 +42,34 @@ def score_response(instance, raw):
             'valid_path':check['valid'],'path_check':check}
 
 
+def model_identity(record):
+    """Keep user-reported app labels separate from exact provider identifiers."""
+    provider = record.get('provider')
+    if type(provider) is not str or not provider.strip():
+        raise ValueError('provider must be a nonempty string')
+    mode = record.get('identity_resolution', 'exact_model_id')
+    if mode == 'exact_model_id':
+        model_id = record.get('model_id')
+        if type(model_id) is not str or not model_id.strip():
+            raise ValueError('model_id must be a nonempty exact identifier')
+        return provider, model_id, mode, None
+    if mode == 'display_label_only':
+        label = record.get('display_label')
+        if 'model_id' not in record or record['model_id'] is not None:
+            raise ValueError('display-label records must leave exact model_id null')
+        if type(label) is not str or not label.strip():
+            raise ValueError('display_label must be a nonempty string')
+        return provider, None, mode, label
+    raise ValueError('unknown identity_resolution')
+
+
 def _validate_attempt(a, slot):
     if type(a) is not dict:
         raise ValueError('attempt must be an object')
-    for key in ('attempt_id','slot_id','provider','model_id'):
+    for key in ('attempt_id','slot_id'):
         if type(a.get(key)) is not str or not a[key].strip():
             raise ValueError(f'{key} must be a nonempty string')
+    model_identity(a)
     if a.get('prompt_sha256') != slot['prompt_sha256']:
         raise ValueError('prompt hash does not match scheduled prompt')
     if a.get('tool_policy') != 'none' or a.get('fresh_context') is not True:
@@ -91,7 +113,7 @@ def summarize(schedule, attempts, instances):
         aid = a['attempt_id']
         if aid in by_id:
             raise ValueError('duplicate attempt_id')
-        identity = (a['provider'],a['model_id'])
+        identity = model_identity(a)
         model = slot['model']
         if model in model_identities and model_identities[model] != identity:
             raise ValueError('a model slot cannot change provider/model identifier')
@@ -118,6 +140,8 @@ def summarize(schedule, attempts, instances):
         identity = model_identities.get(model)
         group = {'model':model,'n':n,'provider':identity[0] if identity else None,
                  'model_id':identity[1] if identity else None,
+                 'identity_resolution':identity[2] if identity else None,
+                 'display_label':identity[3] if identity else None,
                  'planned':len(selected),'received':count,
                  'never_attempted':len(selected)-len(outcomes),
                  'transport_failed':sum(a['status']=='transport_error' for a in outcomes),

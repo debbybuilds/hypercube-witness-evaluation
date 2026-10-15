@@ -38,3 +38,7 @@ Tests use synthetic response strings and provider/model labels as fixtures. They
 ## Before making results public
 
 Record and freeze actual model identifiers/settings before collection, retain all responses and transport attempts, and preserve the original dataset and prompt hashes. Credit sources when discussing the thesis's reproduced work; disclose AI assistance and public dataset exposure. Do not claim that new code establishes scientific novelty or that this pilot measures general safety.
+
+## Manual-app selection before collection
+
+The user reported `GPT 6` for ChatGPT and `Sonnet 5.5` for Claude. These labels are retained exactly as supplied, with exact provider identifiers left null. No independent check of their availability, model routing or hidden settings was performed. This label-based cohort must not be described as an exact-model/API evaluation. The protocol was amended before responses were collected; no mathematical instance or prompt changed.

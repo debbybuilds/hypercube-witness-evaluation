@@ -13,6 +13,33 @@ def cli(*args):
 
 
 class CliTests(unittest.TestCase):
+    def test_manual_app_collection_requires_explicit_identity_limitation(self):
+        from tests.test_scoring import attempt
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); data = root/'data'
+            self.assertEqual(cli('generate','--output',data).returncode,0)
+            slot = json.loads((data/'schedule.json').read_text())[0]
+            models = {'collection_mode':'manual_app'}
+            for name in ('model_a','model_b'):
+                models[name] = {'provider':'test-provider','model_id':None,
+                                'display_label':name+' shown label','identity_resolution':'display_label_only',
+                                'requested_settings':None}
+            a = attempt()
+            a.update(slot_id=slot['slot_id'],prompt_sha256=slot['prompt_sha256'],
+                     model_id=None,display_label=models[slot['model']]['display_label'],
+                     identity_resolution='display_label_only',requested_settings=None,raw='refusal')
+            attempts = root/'attempts.jsonl'; attempts.write_text(json.dumps(a)+'\n')
+            config = root/'models.json'; config.write_text(json.dumps(models))
+            output = root/'out.json'
+            run = cli('score','--dataset',data,'--attempts',attempts,'--models',config,'--output',output)
+            self.assertEqual(run.returncode,0,run.stderr)
+            report = json.loads(output.read_text())
+            self.assertEqual(report['collection_mode'],'manual_app')
+            self.assertIn('unverified',report['identity_limitation'])
+            del models['collection_mode']; config.write_text(json.dumps(models))
+            run = cli('score','--dataset',data,'--attempts',attempts,'--models',config,'--output',output)
+            self.assertNotEqual(run.returncode,0)
+
     def test_collected_settings_must_match_frozen_configuration(self):
         from tests.test_scoring import attempt
         with tempfile.TemporaryDirectory() as tmp:

@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 from .dataset import load_dataset
 from .generation import build_dataset, json_bytes, digest
-from .scoring import strict_json, summarize
+from .scoring import strict_json, summarize, model_identity
 
 
 def main():
@@ -31,13 +31,18 @@ def main():
                               'status':'all artifacts checked; no model performance implied'}).decode(),end='')
             return
         attempts = [strict_json(line) for line in args.attempts.read_text(encoding='utf-8').splitlines() if line.strip()]
+        models = strict_json(args.models.read_text(encoding='utf-8'))
+        collection_mode = models.get('collection_mode','exact_model_id') if type(models) is dict else 'exact_model_id'
+        if collection_mode not in ('exact_model_id','manual_app'):
+            raise ValueError('unknown collection_mode')
         if attempts:
-            models = strict_json(args.models.read_text(encoding='utf-8'))
             for label in ('model_a', 'model_b'):
                 config = models.get(label) if type(models) is dict else None
-                if type(config) is not dict or any(type(config.get(k)) is not str or not config[k].strip()
-                                                   for k in ('provider', 'model_id')):
-                    raise ValueError('configure both model slots with exact provider/model identifiers before scoring')
+                if type(config) is not dict:
+                    raise ValueError('configure both model slots before scoring')
+                identity = model_identity(config)
+                if identity[2] == 'display_label_only' and collection_mode != 'manual_app':
+                    raise ValueError('display labels require explicit manual_app collection mode')
                 if 'requested_settings' not in config or (config['requested_settings'] is not None
                                                           and type(config['requested_settings']) is not dict):
                     raise ValueError('configured requested_settings must be an object or null when unknown')
@@ -46,16 +51,17 @@ def main():
                 if type(a) is not dict or a.get('slot_id') not in slots:
                     raise ValueError('unknown or missing slot_id')
                 config = models.get(slots[a['slot_id']]['model'])
-                if type(config) is not dict or not config.get('provider') or not config.get('model_id'):
-                    raise ValueError('configure exact provider/model identifiers before scoring collected attempts')
-                if (a.get('provider'),a.get('model_id')) != (config['provider'],config['model_id']):
+                if model_identity(a) != model_identity(config):
                     raise ValueError('attempt identity differs from frozen model configuration')
                 if a.get('requested_settings') != config['requested_settings']:
                     raise ValueError('attempt requested settings differ from frozen model configuration')
         result = summarize(schedule,attempts,instances)
+        result['collection_mode'] = collection_mode
+        result['identity_limitation'] = ('App display labels are user-reported; exact model versions and hidden app settings remain unverified.'
+                                         if collection_mode == 'manual_app' else None)
         result['dataset_manifest_sha256'] = digest((args.dataset/'manifest.json').read_bytes())
         result['attempts_sha256'] = digest(args.attempts.read_bytes())
-        result['model_config_sha256'] = digest(args.models.read_bytes()) if attempts else None
+        result['model_config_sha256'] = digest(args.models.read_bytes())
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_bytes(json_bytes(result))
         print(f'{result["measurement_status"]}; summary saved to {args.output}')

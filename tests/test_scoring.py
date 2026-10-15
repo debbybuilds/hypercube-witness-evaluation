@@ -20,6 +20,18 @@ def attempt(identifier='a1', status='received', replaces=None):
 
 
 class ScoringTests(unittest.TestCase):
+    def test_manual_labels_are_preserved_without_inventing_exact_ids(self):
+        a = attempt()
+        a.update(model_id=None, display_label='GPT 6', identity_resolution='display_label_only')
+        group = summarize(SCHEDULE,[a],{'q2-01':G})['groups'][0]
+        self.assertIsNone(group['model_id'])
+        self.assertEqual(group['display_label'],'GPT 6')
+        self.assertEqual(group['identity_resolution'],'display_label_only')
+        b = dict(a, attempt_id='a2',slot_id=SCHEDULE[1]['slot_id'],display_label='different label')
+        with self.assertRaises(ValueError): summarize(SCHEDULE,[a,b],{'q2-01':G})
+        for bad in [dict(a,display_label=''),dict(a,model_id='GPT 6'),dict(a,identity_resolution='guess')]:
+            with self.assertRaises(ValueError): summarize(SCHEDULE,[bad],{'q2-01':G})
+
     def test_deeply_nested_response_is_invalid_not_an_analysis_crash(self):
         raw = '[' * 20000 + ']' * 20000
         self.assertFalse(score_response(G, raw)['valid_path'])

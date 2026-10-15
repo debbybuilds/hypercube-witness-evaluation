@@ -2,7 +2,7 @@
   "attempt_id": "REPLACE_WITH_UNIQUE_ATTEMPT_ID",
   "slot_id": "REPLACE_WITH_SCHEDULE_SLOT_ID",
   "provider": "REPLACE_WITH_ACTUAL_PROVIDER",
-  "model_id": "REPLACE_WITH_EXACT_MODEL_IDENTIFIER",
+  "model_id": null,
   "timestamp_utc": "REPLACE_WITH_ACTUAL_ISO_8601_UTC_TIMESTAMP",
   "requested_settings": null,
   "returned_settings": null,
@@ -12,5 +12,7 @@
   "status": "received",
   "raw": "REPLACE_WITH_EXACT_RESPONSE_TEXT",
   "error": null,
-  "replaces_attempt_id": null
+  "replaces_attempt_id": null,
+  "display_label": "REPLACE_WITH_SCHEDULED_MODEL_DISPLAY_LABEL",
+  "identity_resolution": "display_label_only"
 }
