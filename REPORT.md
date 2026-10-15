@@ -1,12 +1,14 @@
-# Valid hypercube paths, different formatting outcomes
+# Evaluating LLM-Generated Paths in Hypercube Graphs
 
-**A thesis-connected feasibility pilot · 15 October 2026**
+**Deborah Ologundudu · Feasibility pilot · 15 October 2026**
 
-## Finding
+## Overview
 
-In this 20-response manual-app pilot, both model selections supplied valid monochromatic antipodal paths on all ten graphs. The responses attributed to ChatGPT followed the JSON-only instruction in 10/10 cases; those attributed to Claude did so in 6/10. The remaining four Claude replies included explanations followed by valid JSON path objects.
+Building on my master's research in hypercube graph theory, I investigated whether language models could construct valid monochromatic paths between antipodal vertices.
 
-This pilot therefore found no difference in displayed-path correctness on the selected instances. It found a difference in formatting compliance in these particular pasted responses. It does not establish general model superiority or a mathematical failure mechanism.
+I evaluated 20 responses from ChatGPT and Claude across ten colored hypercube graphs. Each submitted path was checked for adjacency, distinct vertices, consistent edge color and antipodal endpoints. Mathematical validity and JSON-only compliance were assessed separately.
+
+Both models supplied valid paths on all ten graphs. ChatGPT followed the JSON-only requirement in all ten responses, while Claude did so in six. The four remaining Claude replies included explanations followed by valid path objects. These results illustrate why mathematical correctness and response-format compliance should be evaluated independently.
 
 | Measure | ChatGPT, displayed label “Gpt 6.1 Sol Light” | Claude, displayed label “Sonnet 5.5” |
 |---|---:|---:|
@@ -17,13 +19,9 @@ This pilot therefore found no difference in displayed-path correctness on the se
 
 The names above are user-reported app labels, not independently verified provider version identifiers. The source material is user-pasted output rather than authenticated provider traces.
 
-## Question and connection to the thesis
+## Research background
 
-Can language models construct mathematical witnesses whose validity can be checked independently of their explanations?
-
-This study builds on Deborah Ologundudu's master's thesis, *Combinatorial Properties of Hypercubes*, specifically its treatment of antipodal colorings and computational verification. For each instance, the model receives a complete colored hypercube and must supply a simple monochromatic path between some antipodal pair.
-
-The new work is an AI-assisted implementation and evaluation study: a fresh generator, new instances, reference search, witness validation, saved prompts, response records and an auditable analysis. The earlier SAT repository used in part of the thesis's reproduction is not this project's codebase. Hypercube theory, graph search and independent constraint checking are established methods; scientific novelty is not claimed merely because the implementation is fresh. See [provenance](docs/provenance.md).
+My master's thesis, *Combinatorial Properties of Hypercubes*, studied antipodal colorings and computational verification. This project applies that background to evaluating model-generated mathematical solutions. I used generated instances, saved prompts and responses, reference graph search, and independent path checks to make the evaluation reproducible.
 
 ## Task and instances
 
@@ -35,15 +33,11 @@ The active pilot uses instances q3-01 through q3-05 and q4-01 through q4-05: fiv
 
 The original toolkit generated ten colorings per dimension. Color selection uses the documented seed `hypercube-pilot-v1` and SHA-256 over canonical antipodal edge pairs. The generator logs duplicate candidates. An independent topology validator derives adjacency from Hamming distance, separately from generation. A reference breadth-first search establishes a monochromatic antipodal connection; the direct witness validator checks its returned path. Tests also compare reference search with a separate simple-path enumeration on small fixtures.
 
-## Collection history and amendments
+## Collection and evidence
 
-The initial proposal contained 120 trials: 20 graphs, two models and three repetitions. Early practice responses had uncertain ChatGPT model identity and remain excluded. The user then reported “Gpt 6.1 Sol Light” and restarted collection with that label; the Claude label remained “Sonnet 5.5.”
+The pilot contains one user-pasted response per model and graph. Fresh chats with no browsing or tools were instructed, but those conditions, exact model versions, hidden settings and generation times were not independently confirmed. Unknown metadata remains null.
 
-After two restarted responses had been seen, the user approved reducing the workload to 20 responses. The selected graph IDs are the first five in each dimension, and the two existing responses were retained. Their original slot and repetition identifiers are preserved and mapped into the revised plan. Selection was not preregistered; the amendment occurred after results were available.
-
-The revised order retains those two responses, then proceeds through selected graphs and model pairs. Claude's q3-02 response arrived before ChatGPT's because the assistant initially named the wrong model in its instructions. That deviation is retained. The user later corrected a mistaken paste for Claude q3-04; both versions are preserved, and the explicit correction map selects the actual response. This is a transcription correction, not an additional or selectively retried model trial.
-
-Fresh chats and no tools or browsing were instructed for each collection step. Those conditions, exact model versions, hidden settings and original generation times are not independently confirmed. Unknown metadata stays null; receipt times are not presented as generation times. These incomplete records are audited as manual intake and are not silently promoted into the stricter original attempt log.
+The workload was reduced from 120 planned trials to 20 after two responses had been observed, so this was not a preregistered study. Earlier uncertain-model practice was excluded. A collection-order deviation and a user-corrected transcription are preserved in the [collection history](docs/collection-history.md) and source records.
 
 ## Scoring and reproducibility
 
@@ -82,6 +76,8 @@ The AI safety connection is evaluation reliability: independently checking a mat
 
 ## What this contributes and what comes next
 
-The completed contribution is an inspectable feasibility study, including honest documentation of protocol changes, model-identity uncertainty, a collection-order mistake and a transcription correction. It demonstrates a working verification pipeline without manufacturing a performance gap.
+This study contributes a reproducible evaluation workflow grounded in hypercube graph theory. It separates the validity of a mathematical solution from formatting and extraction, with independently checked paths and preserved response evidence. On these instances, both model selections produced valid paths; the observed difference was in formatting.
 
 The next useful decision is whether a harder study is worth its collection cost. A follow-up could first assess instance difficulty offline and then freeze a separate protocol with full provider logs and exact model identifiers when available. More trials are not needed to finish this pilot, and follow-up results should not be pooled silently with it.
+
+Source attribution and AI assistance are documented in the [provenance notes](docs/provenance.md).

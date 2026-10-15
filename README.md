@@ -1,6 +1,6 @@
 # Hypercube Witness Evaluation
 
-A thesis-connected feasibility study of LLM-generated monochromatic antipodal paths, with independent checks of every submitted solution.
+Building on my master's research in hypercube graph theory, I evaluated LLM-generated monochromatic antipodal paths using independent checks of every submitted solution.
 
 **Pilot complete: 20 user-pasted responses on 10 graphs.** Both model selections supplied valid displayed paths on 10/10 graphs. ChatGPT passed JSON-only compliance in 10/10 replies; Claude in 6/10. These are observations from a small manual-app pilot with user-reported labels, not a general ranking of model capabilities.
 
@@ -18,7 +18,7 @@ Read the [research report](REPORT.md), inspect the [per-response audit](results/
 
 Mathematical validity, instruction compliance and automatic extraction are separate properties. Here the selected graphs did not expose a difference in displayed-path correctness, but formatting differed. Independent verification makes that conclusion inspectable rather than relying on plausible explanations or a preferred outcome.
 
-The project builds on Deborah Ologundudu's master's thesis, *Combinatorial Properties of Hypercubes*. Its new contribution is an AI-assisted evaluation study with a fresh implementation, generated instances, saved prompts, response records and reproducible scoring. The thesis also reproduced another group's SAT work; that background retains its original credit. No earlier solver repository, encoding or stored search artifact was copied or wrapped here. New implementation alone does not establish scientific novelty.
+My master's thesis, *Combinatorial Properties of Hypercubes*, provides the mathematical foundation. This project applies that background to AI evaluation through generated instances, saved response evidence and reproducible scoring. Source attribution and AI assistance are documented in the [provenance notes](docs/provenance.md).
 
 ## Reproduce the completed pilot
 
