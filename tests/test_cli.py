@@ -13,6 +13,19 @@ def cli(*args):
 
 
 class CliTests(unittest.TestCase):
+    def test_completed_pilot_audit_command_and_read_only_check(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d)/'audit'
+            run=cli('audit-pilot','--output',out)
+            self.assertEqual(run.returncode,0,run.stderr)
+            self.assertEqual(json.loads((out/'audit.json').read_text())['received'],20)
+            run=cli('audit-pilot','--output',out,'--check')
+            self.assertEqual(run.returncode,0,run.stderr)
+            (out/'audit.csv').write_text('altered')
+            run=cli('audit-pilot','--output',out,'--check')
+            self.assertNotEqual(run.returncode,0)
+            self.assertIn('differs',run.stderr)
+
     def test_manual_app_collection_requires_explicit_identity_limitation(self):
         from tests.test_scoring import attempt
         with tempfile.TemporaryDirectory() as tmp:

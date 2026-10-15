@@ -1,0 +1,43 @@
+{
+  "pilot_id": "manual-feasibility-20-v1",
+  "amended_at_utc": "2026-10-15T21:01:17.359507+00:00",
+  "reason": "User approved reducing 120 manual responses to a 20-response feasibility pilot because of collection burden.",
+  "selected_instances": [
+    "q3-01",
+    "q3-02",
+    "q3-03",
+    "q3-04",
+    "q3-05",
+    "q4-01",
+    "q4-02",
+    "q4-03",
+    "q4-04",
+    "q4-05"
+  ],
+  "selection_rule": "First five ascending instance IDs in each dimension; both models, one response per graph. Selection was made after two responses were observed, not preregistered.",
+  "planned_responses": 20,
+  "schedule_sha256": "728c7209cec5efa54ef0aa6da933c4710112ae0d65d3e3cbad29e3e3f7067814",
+  "order_policy": "Retain the two responses already collected; then ascending selected graph IDs, model_a before model_b, skipping retained model/graph pairs. Original 120-trial schedule is preserved as history.",
+  "retained_records": [
+    {
+      "new_slot_id": "model_a/q3-01/1",
+      "original_slot_id": "model_a/q3-01/1",
+      "record_file": "../intake/model_a-q3-01-trial-1.json",
+      "record_sha256": "ba907762d0b2a6f39afc811b82cd5af0320bc4529172222bf76758f42e0ab978",
+      "valid_path": true,
+      "json_only": true,
+      "evidence": "user-pasted manual response; exact model ID and run timestamp unknown; context/tool controls unconfirmed"
+    },
+    {
+      "new_slot_id": "model_a/q3-03/1",
+      "original_slot_id": "model_a/q3-03/2",
+      "record_file": "../intake/model_a-q3-03-trial-2.json",
+      "record_sha256": "63ddfc8c3dc1ba109cb47aebdf1c0c0efed5c40b5527d2e92cdf545778321bd8",
+      "valid_path": true,
+      "json_only": true,
+      "evidence": "user-pasted manual response; exact model ID and run timestamp unknown; context/tool controls unconfirmed"
+    }
+  ],
+  "model_config_file": "../model-config.json",
+  "reporting_limits": "Exploratory feasibility check, not a controlled model ranking. Retained original repetition numbers are recorded in lineage rather than silently relabeled. Earlier uncertain-model practice and off-schedule Claude observations remain excluded."
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "slot_id": "model_b/q3-04/1",
+    "original_record": "intake/model_b-q3-04-trial-1.json",
+    "active_record": "intake/model_b-q3-04-trial-1-correction-1.json",
+    "reason": "User corrected mistaken pasted text; do not count as an extra response."
+  }
+]

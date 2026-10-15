@@ -1,0 +1,51 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "schedule_position": 3,
+  "slot_id": "model_b/q3-01/1",
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "Color 1 edges: 000-001, 000-010, 000-100, 001-011, 010-011, 010-110.\nTry 000 to 111 with color 1: 111 has no color 1 edges (011-111 is 0, 101-111 is 0, 110-111 is 0). So no.\nTry 001 to 110: 001-011-010-110, all color 1. Antipode of 001 is 110. Valid.\n{\"path\":[\"001\",\"011\",\"010\",\"110\"]}",
+  "prompt_sha256": "38fd6d95bb9975543315d1da3be82d8fb69d1506cf3b3284ef811e3b26d3b615",
+  "recorded_at_utc": "2026-10-15T21:02:56.172826+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User-pasted complete response after Claude trial instructions. Attribution follows collection sequence; fresh-context/tool conditions not independently confirmed.",
+  "whole_response_score": {
+    "json_only": false,
+    "schema_compliant": false,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path must be a list"
+    }
+  },
+  "standalone_payload_check": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "displayed_path": [
+    "001",
+    "011",
+    "010",
+    "110"
+  ],
+  "edge_colors": [
+    1,
+    1,
+    1
+  ],
+  "scoring_note": "Directly checked displayed path is valid. Frozen parser does not extract JSON from arbitrary prose: full response fails formal path scoring and JSON-only compliance. Standalone check is diagnostic, not a replacement score."
+}

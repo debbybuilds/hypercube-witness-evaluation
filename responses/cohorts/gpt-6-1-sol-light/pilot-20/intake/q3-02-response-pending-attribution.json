@@ -1,0 +1,59 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "intended_schedule_position": 4,
+  "intended_slot_id": "model_a/q3-02/1",
+  "confirmed_slot_id": "model_b/q3-02/1",
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "raw": "Color 0 edges: 000-010, 000-100, 001-101, 010-011, 100-110, 110-111.\nPath from 000: 000-010-011, dead end (011 has only 010 for color 0). 000-100-110-111: 111 is the antipode of 000.\nPath: 000, 100, 110, 111.\n{\"path\":[\"000\",\"100\",\"110\",\"111\"]}",
+  "prompt_sha256": "b5b16c310d7950eb26073d66d766a6a586573a141449e2f560ed1ca431d4fef8",
+  "recorded_at_utc": "2026-10-15T21:04:08.210672+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User explicitly attributed this complete pasted response to Claude. Exact provider version, model-run timestamp and context/tool controls remain unverified. Original conflicting instructions and intended slot are preserved in this record.",
+  "whole_response_score": {
+    "json_only": false,
+    "schema_compliant": false,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path must be a list"
+    }
+  },
+  "standalone_payload_check": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 0,
+      "length": 3
+    }
+  },
+  "displayed_path": [
+    "000",
+    "100",
+    "110",
+    "111"
+  ],
+  "edge_colors": [
+    0,
+    0,
+    0
+  ],
+  "scoring_note": "Displayed path checked separately. Full prose-plus-JSON response is not extracted under the frozen parser policy.",
+  "slot_id": "model_b/q3-02/1",
+  "identity_resolution": "display_label_only",
+  "attribution_source": "User explicitly confirmed this response was from Claude.",
+  "planned_schedule_position": 5,
+  "actual_collection_position": 4,
+  "protocol_deviations": [
+    "Claude q3-02 collected before the pending ChatGPT q3-02 response after assistant gave conflicting model instructions."
+  ]
+}

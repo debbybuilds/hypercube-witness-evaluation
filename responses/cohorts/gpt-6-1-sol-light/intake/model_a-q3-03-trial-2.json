@@ -1,0 +1,36 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "cohort_id": "gpt-6-1-sol-light-manual-v1",
+  "schedule_position": 2,
+  "slot_id": "model_a/q3-03/2",
+  "provider": "OpenAI",
+  "display_label": "Gpt 6.1 Sol Light",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "{\"path\":[\"000\",\"001\",\"101\",\"111\"]}",
+  "prompt_sha256": "a899cb75ecc451b72219c4782d90446a8ee168d609beffe670a5d202206b3077",
+  "recorded_at_utc": "2026-10-15T20:58:34.866668+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User pasted this response after the restarted trial 2 prompt. Model attribution follows the instructed collection sequence and user-reported display label, not an authenticated provider trace.",
+  "metadata_note": "Receipt time is distinct from unknown run time. Fresh-context/tool controls are not independently confirmed; unknown values remain null.",
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1
+  ]
+}

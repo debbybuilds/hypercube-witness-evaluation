@@ -1,0 +1,51 @@
+{
+  "record_type": "user_pasted_claude_response",
+  "related_instance": "q3-01",
+  "raw": "Color 1 edges: 000-001, 000-010, 000-100, 001-011, 010-011, 010-110.\nLooking for a path from a vertex to its antipode using only color 1 edges. Vertex 100 connects only to 000 in color 1. The antipode of 100 is 011.\nPath: 100 → 000 → 001 → 011. Edges: 100-000 (1), 000-001 (1), 001-011 (1). All color 1, no repeated vertices, and 011 is the antipode of 100.\n{\"path\":[\"100\",\"000\",\"001\",\"011\"]}",
+  "source_model": "Claude",
+  "fresh_context": true,
+  "prompt_history": null,
+  "counts_as_scheduled_trial": false,
+  "reason": "Claude attribution and prompt/context conditions confirmed by user. Retained as an off-schedule same-instance observation: Claude was collected before its slot in the frozen randomized schedule. No original model-run timestamp or independent trace is available.",
+  "whole_response_score": {
+    "json_only": false,
+    "schema_compliant": false,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path must be a list"
+    }
+  },
+  "standalone_payload_check": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "note": "Standalone JSON check validates the displayed path only; arbitrary prose is not stripped for formal mathematical scoring.",
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "attribution_source": "User explicitly confirmed that the last pasted response came from Claude.",
+  "interpretation": {
+    "displayed_path_valid": true,
+    "json_only": false,
+    "formal_full_response_path_score": false,
+    "format_note": "The full pasted response includes prose. Under the frozen extraction policy it is not automatically stripped to recover JSON; the separately checked displayed path is mathematically valid."
+  },
+  "same_exact_prompt": true,
+  "saw_other_model_response_or_feedback": false,
+  "conditions_source": "User confirmed the same exact prompt in a fresh conversation, without ChatGPT answer or feedback.",
+  "related_planned_slot_id": "model_b/q3-01/1",
+  "prompt_sha256": "38fd6d95bb9975543315d1da3be82d8fb69d1506cf3b3284ef811e3b26d3b615",
+  "protocol_deviations": [
+    "Collected outside frozen randomized order; not inserted into scheduled trial log."
+  ],
+  "tool_policy": null
+}

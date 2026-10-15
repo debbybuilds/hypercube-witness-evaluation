@@ -1,0 +1,37 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "slot_id": "model_a/q4-03/1",
+  "planned_schedule_position": 15,
+  "actual_collection_position": 15,
+  "provider": "OpenAI",
+  "display_label": "Gpt 6.1 Sol Light",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "{\"path\":[\"0000\",\"0001\",\"1001\",\"1011\",\"1111\"]}",
+  "prompt_sha256": "e70f1ee8919166c6e315e41ccceae3324f6cbf7958ea90c63c01523764df93e4",
+  "recorded_at_utc": "2026-10-15T21:14:44.391114+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User-pasted response after explicit ChatGPT q4-03 instructions. Attribution follows collection sequence; exact provider version and context/tool controls are not independently confirmed.",
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 4
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1,
+    1
+  ]
+}

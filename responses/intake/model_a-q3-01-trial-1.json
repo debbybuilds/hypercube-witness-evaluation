@@ -1,0 +1,38 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "slot_id": "model_a/q3-01/1",
+  "provider": "OpenAI",
+  "display_label": "GPT 6",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "{\"path\":[\"000\",\"001\",\"011\",\"010\",\"110\",\"111\"]}",
+  "prompt_sha256": "38fd6d95bb9975543315d1da3be82d8fb69d1506cf3b3284ef811e3b26d3b615",
+  "recorded_at_utc": "2026-10-15T20:49:20Z",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "Pasted by the user immediately after the first scheduled prompt was supplied. Model attribution follows the collection sequence; not an authenticated provider trace.",
+  "metadata_note": "Receipt time is recorded separately from unknown run time. Fresh-context and tool conditions have not been explicitly confirmed. Preserved as intake rather than fabricating metadata required by the strict attempt log.",
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path is not monochromatic"
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1,
+    1,
+    0
+  ],
+  "model_identity_status": "uncertain; user later could not confirm earlier selector identity",
+  "counts_as_scheduled_trial": false,
+  "classification": "practice observation",
+  "identity_note": "Original reported label retained as historical metadata; not verified and not assigned to the restarted cohort."
+}

@@ -1,0 +1,36 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "slot_id": "model_b/q3-05/1",
+  "planned_schedule_position": 10,
+  "actual_collection_position": 10,
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "{\"path\":[\"000\",\"010\",\"110\",\"111\"]}",
+  "prompt_sha256": "986374faf483b9a68248f39b7e021d87b22d54c115b7f10d1a16036b79e7eec1",
+  "recorded_at_utc": "2026-10-15T21:10:45.059552+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User-pasted response after explicit Claude q3-05 instructions. Attribution follows collection sequence; exact provider version and context/tool controls are not independently confirmed.",
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1
+  ]
+}

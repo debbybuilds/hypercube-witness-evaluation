@@ -1,0 +1,39 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "slot_id": "model_a/q3-02/1",
+  "planned_schedule_position": 4,
+  "actual_collection_position": 5,
+  "provider": "OpenAI",
+  "display_label": "Gpt 6.1 Sol Light",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "{\"path\":[\"000\",\"001\",\"011\",\"111\"]}",
+  "prompt_sha256": "b5b16c310d7950eb26073d66d766a6a586573a141449e2f560ed1ca431d4fef8",
+  "recorded_at_utc": "2026-10-15T21:05:37.180189+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User-pasted response after explicit ChatGPT q3-02 instructions. Attribution follows collection sequence; exact provider model and context/tool controls not independently confirmed.",
+  "protocol_deviations": [
+    "Received after Claude q3-02 because of previously documented conflicting assistant model instructions."
+  ],
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1
+  ]
+}

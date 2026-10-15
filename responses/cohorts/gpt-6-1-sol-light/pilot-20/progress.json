@@ -1,0 +1,13 @@
+{
+  "planned_responses": 20,
+  "received_user_pasted_responses": 20,
+  "remaining_responses": 0,
+  "valid_paths_among_received": 16,
+  "json_only_among_received": 16,
+  "note": "Collection complete. Audit recomputed all 20 responses from source records, verified two retained-record hashes and applied the Claude q3-04 correction. All displayed paths valid; four prose-plus-JSON replies fail formal extraction/JSON-only checks. See results/audit.json for evidence and limits.",
+  "formally_valid_paths_among_received": 16,
+  "diagnostic_valid_displayed_paths_among_received": 20,
+  "responses_pending_model_attribution": 0,
+  "confirmed_unique_planned_slots_with_responses": 20,
+  "next_slot_id": null
+}

@@ -1,86 +1,83 @@
-# Verifying LLM Solutions to Hypercube Coloring Problems
+# Hypercube Witness Evaluation
 
-A thesis-connected evaluation pilot asking whether language models can construct valid mathematical witnesses on small hypercubes, with every submitted path checked directly.
+A thesis-connected feasibility study of LLM-generated monochromatic antipodal paths, with independent checks of every submitted solution.
 
-**Status: local pilot toolkit built; manual-app labels selected; no model responses collected and no model performance results yet.** There are 20 fixed instances, separate reference paths, and a randomized schedule for 120 planned responses. This is a newly implemented project, not a fork or wrapper of the SAT repository used for part of the thesis's computational reproduction.
+**Pilot complete: 20 user-pasted responses on 10 graphs.** Both model selections supplied valid displayed paths on 10/10 graphs. ChatGPT passed JSON-only compliance in 10/10 replies; Claude in 6/10. These are observations from a small manual-app pilot with user-reported labels, not a general ranking of model capabilities.
 
-## Why this study
+| Measure | ChatGPT: “Gpt 6.1 Sol Light” | Claude: “Sonnet 5.5” |
+|---|---:|---:|
+| Valid displayed paths | 10/10 | 10/10 |
+| JSON-only responses | 10/10 | 6/10 |
+| Valid paths recovered by frozen response parser | 10/10 | 6/10 |
 
-A model can produce plausible or correctly formatted mathematics without producing a valid solution. Here the requested solution is concrete: a sequence of vertices forming a monochromatic path between antipodes of a colored hypercube. Every adjacency, color, endpoint and repeated vertex is checkable.
+Four Claude replies included prose followed by a valid path. Their automatic extraction failures are **not mathematical errors in the displayed paths**. Exact underlying model versions and hidden app settings are unknown.
 
-The intended research contribution is the evaluation protocol, newly generated dataset, prospectively collected responses, and analysis of verified performance. Hypercube definitions, antipodal coloring, and breadth-first search are established mathematics and algorithms. A fresh implementation does not by itself establish scientific novelty.
+Read the [research report](REPORT.md), inspect the [per-response audit](results/pilot-20/audit.csv), or review [provenance and authorship](docs/provenance.md).
 
-This builds on Deborah Ologundudu's master's thesis, *Combinatorial Properties of Hypercubes*, especially its definitions and computational investigation. The thesis also reproduced published SAT work; that work must retain its original credit. This project uses a fresh generator, direct constraint checks and graph search, with no external SAT solver, copied encodings or stored solver artifacts. See [provenance](docs/provenance.md) and the [approved protocol](docs/experiment-spec.md).
+## Why this matters
+
+Mathematical validity, instruction compliance and automatic extraction are separate properties. Here the selected graphs did not expose a difference in displayed-path correctness, but formatting differed. Independent verification makes that conclusion inspectable rather than relying on plausible explanations or a preferred outcome.
+
+The project builds on Deborah Ologundudu's master's thesis, *Combinatorial Properties of Hypercubes*. Its new contribution is an AI-assisted evaluation study with a fresh implementation, generated instances, saved prompts, response records and reproducible scoring. The thesis also reproduced another group's SAT work; that background retains its original credit. No earlier solver repository, encoding or stored search artifact was copied or wrapped here. New implementation alone does not establish scientific novelty.
+
+## Reproduce the completed pilot
+
+Python 3.10+; standard library only. No API keys, model calls or network needed.
+
+```sh
+python3 -m hypercube audit-pilot
+python3 -m hypercube audit-pilot --check
+python3 -m unittest discover -v
+```
+
+The first command rebuilds `results/pilot-20/audit.json` and `audit.csv` from the raw replies and source mappings. `--check` verifies those files without rewriting them. The JSON audit includes source hashes, per-response outcomes, model/dimension totals and limitations. Original provider sampling cannot be reproduced from these records.
+
+The audit applies the explicit Claude q3-04 correction, retains the earlier paste as superseded evidence, and checks two retained-record hashes. It recomputes scores rather than trusting saved score fields or progress counters. It rejects duplicate slots, changed retained evidence, mismatched prompts and inconsistent displayed-path annotations.
 
 ## The task
 
-Vertices of Q_n are binary strings of length n. An edge changes one bit. The antipode complements all bits. Each edge is colored 0 or 1, and an edge and its antipodal edge have opposite colors.
+Vertices of Q_n are n-bit strings; an edge changes one bit and the antipode complements all bits. Edges have colors 0 or 1, with opposite colors on antipodal edges. A response should contain a simple path joining any antipodal pair using one edge color throughout.
 
-Given the complete colored edge list, the model must return a **simple monochromatic path between any antipodal pair**. The path need not be shortest: this is an ordinary-path task, not a geodesic task. All 20 included colorings have independently checked reference paths.
+Any valid simple path is accepted: it need not be a geodesic. The active study uses five Q3 graphs and five Q4 graphs, one response per model/graph. All included instances have directly checked reference paths.
 
-The pilot contains 10 distinct labeled colorings of Q3 and 10 of Q4. Distinct does not mean non-isomorphic or statistically independent. Three trials for each of two models produce 120 scheduled response slots.
+The formal parser accepts strict JSON or one whole-response JSON fence (the latter fails JSON-only compliance). It does not strip explanatory prose. A separate diagnostic checks the final JSON line in prose-containing replies to establish the validity of the displayed solution; it does not change formal scores. See the [report's methods](REPORT.md#scoring-and-reproducibility).
 
-## Run locally
+## Evidence and protocol changes
 
-Python 3.10 or later; no dependencies, network, API keys or model calls.
+Responses were pasted by the user, not obtained from authenticated provider logs. Labels are user-reported. Unknown run times, settings and context/tool controls remain null; receipt timestamps are not generation timestamps.
+
+The original plan had 120 trials. After two restarted responses, the user reduced it to this 20-response feasibility pilot because of manual workload. The first five ascending graph IDs per dimension were chosen and the two responses retained with explicit lineage. This was not preregistration. One collection-order deviation arose from conflicting assistant model instructions; one Claude paste was later corrected by the user. Earlier uncertain-model practice and an off-schedule Claude observation are excluded. No trial was rerun to replace a received failure in the active pilot.
+
+These limitations constrain the conclusions: no causal account of formatting differences, broad model superiority, exact-version performance or safety/alignment performance is established.
+
+## Dataset and implementation
+
+The original toolkit generated 20 graphs (ten per dimension); this pilot uses IDs 01–05 per dimension. Original 120-slot scheduling artifacts are retained as history. Use the [amended schedule](responses/cohorts/gpt-6-1-sol-light/pilot-20/schedule.json) and [amendment manifest](responses/cohorts/gpt-6-1-sol-light/pilot-20/manifest.json) to inspect the active study.
 
 ```sh
-python3 -m unittest discover -v
 python3 -m hypercube verify --dataset data
-python3 -m hypercube score --dataset data --attempts responses/attempts.jsonl --output results/summary.json
-```
-
-The supplied attempts file is empty. Its summary explicitly says **no responses collected**; observed response rates are null. A zero collection-progress fraction is not a measured accuracy.
-
-To reproduce the dataset without overwriting the supplied copy:
-
-```sh
 python3 -m hypercube generate --output /tmp/hypercube-pilot-reproduction
-python3 -m hypercube verify --dataset /tmp/hypercube-pilot-reproduction
 ```
 
-Generation uses seed `hypercube-pilot-v1`. For each antipodal edge pair, the color of the lexicographically smaller edge is the low bit of the first SHA-256 digest byte. Hash input is a compact UTF-8 JSON array `[seed,n,candidate,[u,v]]`. The other edge gets the opposite color. Candidate numbering starts at zero independently per dimension; exact duplicate colorings are logged and excluded. An unexpected no-path candidate stops generation for investigation.
-
-File hashes and accepted/excluded candidates are in `data/manifest.json`. Schedule slots are ordered by SHA-256 of compact JSON `[seed,slot_id]`, providing a fixed pseudorandom order. Generated files contain no timestamps. Validation checks every graph and certificate directly, fingerprints all files, and checks byte-for-byte reproduction of the frozen protocol.
-
-## Collect responses
-
-1. The user selected manual collection with user-reported app labels **GPT 6** (ChatGPT/OpenAI) and **Sonnet 5.5** (Claude/Anthropic). The saved configuration uses `collection_mode: "manual_app"`, `identity_resolution: "display_label_only"`, the literal `display_label`, and `model_id: null`. Unknown settings are null. Freeze and retain this configuration before collection. This exploratory variant cannot identify exact underlying model versions or hidden app settings. An exact-version study instead requires provider-supplied identifiers and a separately documented configuration; never invent an ID from a display label.
-2. Follow `data/schedule.json` in order. For each slot, open a fresh context, disable tools and browsing, and send the exact matching file from `data/prompts/`. Do not send reference paths, previous responses, hints or correctness feedback.
-3. Capture the **complete raw response**, displayed label and identity-resolution status, actual UTC timestamp, requested/returned settings, prompt hash, and context/tool policy. Preserve refusals and truncated or malformed responses as received outcomes. Do not delete failures or retry received answers.
-4. Copy the field structure from `responses/attempt-template.json`, replace every placeholder, and append one compact JSON object per line to `responses/attempts.jsonl`. The template is documentation, not a trial record. Raw responses may contain newlines encoded as `\n` within the JSON string. Do not manually normalize responses into JSON answers.
-5. For a transport failure, record `status: "transport_error"`, `raw: null`, and an error description without credentials or private request data. A replacement must have a new attempt ID and point to the immediately preceding failed attempt using `replaces_attempt_id`. Only transport failures may be replaced; keep the whole chain in file order.
-6. Run scoring. Nonempty collections require both model slots to be configured and must match their frozen identity records and requested settings exactly (including null when unknown). Manual-app records preserve display labels and null exact IDs, and the report explicitly carries the identification limitation. Returned settings are retained separately and are not assumed to equal requested settings. For another config location use `--models PATH`. Scoring rejects unknown slots, mismatched prompt hashes, duplicate attempt IDs, changed model identifiers and unlinked retries.
-
-The toolkit makes no API calls and does not automate collection. Public instances can become contaminated; run the pilot without external retrieval, record the conditions, and disclose public exposure in future reuse.
-
-## What is scored
-
-Three measures are kept separate:
-
-- **JSON-only:** the complete response parses as strict JSON. Duplicate keys and nonstandard constants are rejected.
-- **Exact schema:** the parsed object has only `path`, whose value is a list of strings. Vertex correctness is checked mathematically.
-- **Valid path:** the listed vertices form a simple, adjacent, monochromatic path with antipodal endpoints.
-
-One fenced JSON object occupying the whole response can be scored for path validity but fails JSON-only compliance. Extra object fields fail exact schema compliance while a valid path may still pass. Arbitrary prose is not stripped to salvage JSON. Mathematical failures include malformed responses, refusals and empty received text.
-
-For each model and dimension, the report includes planned, received, never-attempted, unresolved transport-failed, correct, and total transport-error event counts. `planned = received + never_attempted + transport_failed`. Observed rates use received responses only. `correct_per_planned_collection_progress` is coverage progress, not model accuracy. The complete attempt history and source-file hashes remain in the scored output.
-
-Repeated trials are clustered by instance. Small dimensions may produce ceiling performance; this pilot is not designed to establish general superiority, a causal reasoning mechanism, or safety/alignment performance. Its safety relevance is evaluation reliability: using independently checked evidence instead of trusting output presentation.
-
-## Layout
+Generation uses seed `hypercube-pilot-v1`. Each canonical antipodal edge pair receives a color from the low bit of the first SHA-256 digest byte, hashing compact UTF-8 JSON `[seed,n,candidate,[u,v]]`; the other edge receives the complementary color. Exact duplicates are logged. Any unexpected no-path candidate stops generation. Independent topology checks use Hamming distance; reference search uses breadth-first monochromatic connectivity, not SAT software. Tests separately enumerate simple paths on small fixtures and verify ordinary non-geodesic paths are accepted.
 
 | Location | Purpose |
 |---|---|
-| `hypercube/validation.py` | Independent topology, antipodal coloring and path checks |
-| `hypercube/search.py` | Reference breadth-first monochromatic search |
-| `hypercube/generation.py` | Fresh deterministic dataset and prompt generation |
-| `hypercube/scoring.py` | Strict parsing, trial validation and metric calculations |
-| `hypercube/dataset.py` | Saved-artifact integrity and reproducibility checks |
-| `tests/` | Hand-checked fixtures, adversarial inputs, independent path search and CLI tests |
-| `data/instances/`, `data/prompts/` | Frozen graph inputs and solution-free prompts |
-| `data/reference/` | Reference certificates; never include in model inputs |
-| `responses/` | Model configuration, record template and empty response log |
-| `results/summary.json` | Empty-collection summary, not experimental findings |
+| `REPORT.md` | Finding, thesis connection, methods, amendments and interpretation |
+| `hypercube/pilot_audit.py` | Reproducible audit of the amended pilot |
+| `hypercube/validation.py` | Independent topology and path checks |
+| `hypercube/generation.py`, `search.py` | Fresh instance generation and reference search |
+| `hypercube/scoring.py` | Strict response parsing and original attempt-log scoring |
+| `data/instances/`, `prompts/`, `reference/` | Graphs, solution-free prompts and separate certificates |
+| `responses/cohorts/gpt-6-1-sol-light/pilot-20/` | Active schedule, mappings, correction and raw intake |
+| `results/pilot-20/` | Authoritative regenerated JSON/CSV results |
+| `tests/` | Fixtures, adversarial inputs, reproducibility and correction tests |
+| `docs/experiment-spec.md`, `provenance.md` | Protocol history and contribution record |
 
-Implementation and documentation were prepared with AI assistance. The code and tests are available for inspection and explanation; do not describe every line as manually written by the researcher. No license has been selected; public reuse permission is not granted by this initial local version.
+`score` and `results/summary.json` belong to the original, stricter 120-slot attempt log. That log is empty because unknown metadata was not fabricated. They are not the active study's results. The completed manual pilot is rebuilt with **`audit-pilot`**.
+
+## Authorship and publication
+
+The research direction, collection and thesis background belong to the researcher; design, implementation, testing and writing were developed with AI assistance. The material is provided for inspection and explanation, not represented as entirely unaided authorship or a novel theorem. See [provenance](docs/provenance.md).
+
+This is a standalone local repository prepared for publication. It has not been published to GitHub. No license has been selected; this version does not grant reuse permission. A larger study should use a separate, prospectively frozen protocol if its expected value justifies the collection cost.

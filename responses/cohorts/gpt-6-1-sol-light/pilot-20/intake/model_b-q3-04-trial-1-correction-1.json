@@ -1,0 +1,55 @@
+{
+  "record_type": "user_correction_of_pasted_response",
+  "pilot_id": "manual-feasibility-20-v1",
+  "slot_id": "model_b/q3-04/1",
+  "planned_schedule_position": 8,
+  "actual_collection_position": 8,
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "prompt_sha256": "d5f2c48674cd7776abbae717b37ee5a864002591a82cd7945f8a5b2999a71811",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "raw": "Color 0 edges: 000-001, 000-100, 010-110, 100-101, 100-110, 101-111.\nCheck antipodal consistency isn't needed; just find a path.\nStart 000, go 000-100, 100-101, 101-111. Is 111 the antipode of 000? Yes.\nPath: 000, 100, 101, 111, all color 0, no repeated vertices.\n{\"path\":[\"000\",\"100\",\"101\",\"111\"]}",
+  "recorded_at_utc": "2026-10-15T21:09:12.898382+00:00",
+  "supersedes_record_file": "model_b-q3-04-trial-1.json",
+  "supersedes_record_sha256": "126634784d2aa8d3556fe76a512b8f56c8b727b3b48cc65a8b612a020e8ec0bf",
+  "correction_basis": "User explicitly identified the earlier Claude paste as mistaken and supplied this as the actual response. This is a transcription correction, not a new model attempt.",
+  "provenance": "User-supplied correction attributed to Claude q3-04. Original paste remains unchanged. Exact provider model, original generation time and context/tool conditions not independently verified.",
+  "whole_response_score": {
+    "json_only": false,
+    "schema_compliant": false,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path must be a list"
+    }
+  },
+  "standalone_payload_check": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 0,
+      "length": 3
+    }
+  },
+  "displayed_path": [
+    "000",
+    "100",
+    "101",
+    "111"
+  ],
+  "edge_colors": [
+    0,
+    0,
+    0
+  ],
+  "scoring_note": "Displayed path is valid. Full reply includes prose and fails JSON-only compliance and fixed automatic JSON extraction."
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "position": 1,
+    "slot_id": "model_a/q3-01/1",
+    "model": "model_a",
+    "instance_id": "q3-01",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "38fd6d95bb9975543315d1da3be82d8fb69d1506cf3b3284ef811e3b26d3b615",
+    "original_schedule_slot": "model_a/q3-01/1",
+    "original_schedule_position": 1
+  },
+  {
+    "position": 2,
+    "slot_id": "model_a/q3-03/1",
+    "model": "model_a",
+    "instance_id": "q3-03",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "a899cb75ecc451b72219c4782d90446a8ee168d609beffe670a5d202206b3077",
+    "original_schedule_slot": "model_a/q3-03/2",
+    "original_schedule_position": 2
+  },
+  {
+    "position": 3,
+    "slot_id": "model_b/q3-01/1",
+    "model": "model_b",
+    "instance_id": "q3-01",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "38fd6d95bb9975543315d1da3be82d8fb69d1506cf3b3284ef811e3b26d3b615",
+    "original_schedule_slot": "model_b/q3-01/1",
+    "original_schedule_position": 49
+  },
+  {
+    "position": 4,
+    "slot_id": "model_a/q3-02/1",
+    "model": "model_a",
+    "instance_id": "q3-02",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "b5b16c310d7950eb26073d66d766a6a586573a141449e2f560ed1ca431d4fef8",
+    "original_schedule_slot": "model_a/q3-02/1",
+    "original_schedule_position": 16
+  },
+  {
+    "position": 5,
+    "slot_id": "model_b/q3-02/1",
+    "model": "model_b",
+    "instance_id": "q3-02",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "b5b16c310d7950eb26073d66d766a6a586573a141449e2f560ed1ca431d4fef8",
+    "original_schedule_slot": "model_b/q3-02/1",
+    "original_schedule_position": 20
+  },
+  {
+    "position": 6,
+    "slot_id": "model_b/q3-03/1",
+    "model": "model_b",
+    "instance_id": "q3-03",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "a899cb75ecc451b72219c4782d90446a8ee168d609beffe670a5d202206b3077",
+    "original_schedule_slot": "model_b/q3-03/1",
+    "original_schedule_position": 60
+  },
+  {
+    "position": 7,
+    "slot_id": "model_a/q3-04/1",
+    "model": "model_a",
+    "instance_id": "q3-04",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "d5f2c48674cd7776abbae717b37ee5a864002591a82cd7945f8a5b2999a71811",
+    "original_schedule_slot": "model_a/q3-04/1",
+    "original_schedule_position": 77
+  },
+  {
+    "position": 8,
+    "slot_id": "model_b/q3-04/1",
+    "model": "model_b",
+    "instance_id": "q3-04",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "d5f2c48674cd7776abbae717b37ee5a864002591a82cd7945f8a5b2999a71811",
+    "original_schedule_slot": "model_b/q3-04/1",
+    "original_schedule_position": 55
+  },
+  {
+    "position": 9,
+    "slot_id": "model_a/q3-05/1",
+    "model": "model_a",
+    "instance_id": "q3-05",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "986374faf483b9a68248f39b7e021d87b22d54c115b7f10d1a16036b79e7eec1",
+    "original_schedule_slot": "model_a/q3-05/1",
+    "original_schedule_position": 22
+  },
+  {
+    "position": 10,
+    "slot_id": "model_b/q3-05/1",
+    "model": "model_b",
+    "instance_id": "q3-05",
+    "n": 3,
+    "trial": 1,
+    "prompt_sha256": "986374faf483b9a68248f39b7e021d87b22d54c115b7f10d1a16036b79e7eec1",
+    "original_schedule_slot": "model_b/q3-05/1",
+    "original_schedule_position": 63
+  },
+  {
+    "position": 11,
+    "slot_id": "model_a/q4-01/1",
+    "model": "model_a",
+    "instance_id": "q4-01",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "4c4c0cbbfffb05e84a9ea39c43410cac620f7d60d6106d505859862e1a20054a",
+    "original_schedule_slot": "model_a/q4-01/1",
+    "original_schedule_position": 68
+  },
+  {
+    "position": 12,
+    "slot_id": "model_b/q4-01/1",
+    "model": "model_b",
+    "instance_id": "q4-01",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "4c4c0cbbfffb05e84a9ea39c43410cac620f7d60d6106d505859862e1a20054a",
+    "original_schedule_slot": "model_b/q4-01/1",
+    "original_schedule_position": 120
+  },
+  {
+    "position": 13,
+    "slot_id": "model_a/q4-02/1",
+    "model": "model_a",
+    "instance_id": "q4-02",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "703b20f98d455d1e4af13f2b3c7768493384dcd05cde2628f8db7b4129dff929",
+    "original_schedule_slot": "model_a/q4-02/1",
+    "original_schedule_position": 87
+  },
+  {
+    "position": 14,
+    "slot_id": "model_b/q4-02/1",
+    "model": "model_b",
+    "instance_id": "q4-02",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "703b20f98d455d1e4af13f2b3c7768493384dcd05cde2628f8db7b4129dff929",
+    "original_schedule_slot": "model_b/q4-02/1",
+    "original_schedule_position": 37
+  },
+  {
+    "position": 15,
+    "slot_id": "model_a/q4-03/1",
+    "model": "model_a",
+    "instance_id": "q4-03",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "e70f1ee8919166c6e315e41ccceae3324f6cbf7958ea90c63c01523764df93e4",
+    "original_schedule_slot": "model_a/q4-03/1",
+    "original_schedule_position": 96
+  },
+  {
+    "position": 16,
+    "slot_id": "model_b/q4-03/1",
+    "model": "model_b",
+    "instance_id": "q4-03",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "e70f1ee8919166c6e315e41ccceae3324f6cbf7958ea90c63c01523764df93e4",
+    "original_schedule_slot": "model_b/q4-03/1",
+    "original_schedule_position": 43
+  },
+  {
+    "position": 17,
+    "slot_id": "model_a/q4-04/1",
+    "model": "model_a",
+    "instance_id": "q4-04",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "d3188708e7504aa132f5c5ee8437c297871023f573695adea5ae1567d20ccd84",
+    "original_schedule_slot": "model_a/q4-04/1",
+    "original_schedule_position": 13
+  },
+  {
+    "position": 18,
+    "slot_id": "model_b/q4-04/1",
+    "model": "model_b",
+    "instance_id": "q4-04",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "d3188708e7504aa132f5c5ee8437c297871023f573695adea5ae1567d20ccd84",
+    "original_schedule_slot": "model_b/q4-04/1",
+    "original_schedule_position": 116
+  },
+  {
+    "position": 19,
+    "slot_id": "model_a/q4-05/1",
+    "model": "model_a",
+    "instance_id": "q4-05",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "4602f50edb147884f57fa040aceed331873a56448767cd21b5dfb5ee93d358c1",
+    "original_schedule_slot": "model_a/q4-05/1",
+    "original_schedule_position": 44
+  },
+  {
+    "position": 20,
+    "slot_id": "model_b/q4-05/1",
+    "model": "model_b",
+    "instance_id": "q4-05",
+    "n": 4,
+    "trial": 1,
+    "prompt_sha256": "4602f50edb147884f57fa040aceed331873a56448767cd21b5dfb5ee93d358c1",
+    "original_schedule_slot": "model_b/q4-05/1",
+    "original_schedule_position": 7
+  }
+]

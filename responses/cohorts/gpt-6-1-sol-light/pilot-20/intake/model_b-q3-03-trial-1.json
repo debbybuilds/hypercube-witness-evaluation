@@ -1,0 +1,52 @@
+{
+  "record_type": "user_pasted_manual_trial",
+  "pilot_id": "manual-feasibility-20-v1",
+  "slot_id": "model_b/q3-03/1",
+  "planned_schedule_position": 6,
+  "actual_collection_position": 6,
+  "provider": "Anthropic",
+  "display_label": "Sonnet 5.5",
+  "model_id": null,
+  "identity_resolution": "display_label_only",
+  "raw": "Color 0 edges: 000-010, 010-110, 011-111, 100-101, 100-110, 110-111.\nTry the path 000 → 010 → 110 → 111. This starts at 000 and ends at 111, which are antipodes. All the edges are color 0, and no vertex repeats.\n{\"path\":[\"000\",\"010\",\"110\",\"111\"]}",
+  "prompt_sha256": "a899cb75ecc451b72219c4782d90446a8ee168d609beffe670a5d202206b3077",
+  "recorded_at_utc": "2026-10-15T21:06:28.679307+00:00",
+  "model_run_timestamp_utc": null,
+  "fresh_context": null,
+  "tool_policy": null,
+  "requested_settings": null,
+  "returned_settings": null,
+  "provenance": "User-pasted complete response after explicit Claude q3-03 instructions. Attribution follows collection sequence; exact version and context/tool controls are not independently confirmed.",
+  "whole_response_score": {
+    "json_only": false,
+    "schema_compliant": false,
+    "valid_path": false,
+    "path_check": {
+      "valid": false,
+      "reason": "path must be a list"
+    }
+  },
+  "standalone_payload_check": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 0,
+      "length": 3
+    }
+  },
+  "displayed_path": [
+    "000",
+    "010",
+    "110",
+    "111"
+  ],
+  "edge_colors": [
+    0,
+    0,
+    0
+  ],
+  "scoring_note": "The displayed path is checked separately. Prose-plus-JSON fails full-response extraction under the frozen parser policy."
+}

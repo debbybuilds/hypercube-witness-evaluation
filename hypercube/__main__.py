@@ -4,6 +4,7 @@ from pathlib import Path
 from .dataset import load_dataset
 from .generation import build_dataset, json_bytes, digest
 from .scoring import strict_json, summarize, model_identity
+from .pilot_audit import audit_pilot, write_audit, DEFAULT_PILOT
 
 
 def main():
@@ -18,8 +19,18 @@ def main():
     score.add_argument('--attempts', type=Path, default=Path('responses/attempts.jsonl'))
     score.add_argument('--models', type=Path, default=Path('responses/model-config.json'))
     score.add_argument('--output', type=Path, default=Path('results/summary.json'))
+    audit = commands.add_parser("audit-pilot")
+    audit.add_argument("--dataset", type=Path, default=Path("data"))
+    audit.add_argument("--pilot", type=Path, default=DEFAULT_PILOT)
+    audit.add_argument("--output", type=Path, default=Path("results/pilot-20"))
+    audit.add_argument("--check", action="store_true")
     args = parser.parse_args()
     try:
+        if args.command == 'audit-pilot':
+            report = audit_pilot(args.dataset, args.pilot)
+            write_audit(report, args.output, check=args.check)
+            print(f"Audited {report['received']}/{report['planned']} responses; {report['missing']} missing.")
+            return
         if args.command == 'generate':
             manifest = build_dataset(args.output)
             print(f'Generated {len(manifest["instances"])} instances; no model responses collected.')

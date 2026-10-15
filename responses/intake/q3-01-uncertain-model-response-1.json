@@ -1,0 +1,32 @@
+{
+  "record_type": "user_pasted_practice_observation",
+  "related_instance": "q3-01",
+  "intended_scheduled_slot_id": "model_a/q3-01/3",
+  "counts_as_scheduled_trial": false,
+  "raw": "{\"path\":[\"100\",\"000\",\"001\",\"011\"]}",
+  "provider": null,
+  "display_label": null,
+  "model_id": null,
+  "model_identity_status": "uncertain; user could not confirm GPT 6 versus GPT 6.1 sol",
+  "fresh_context": null,
+  "tool_policy": null,
+  "model_run_timestamp_utc": null,
+  "recorded_at_utc": "2026-10-15T20:55:12.961005+00:00",
+  "provenance": "Pasted after q3-01 repetition 3 prompt and subsequent discussion of uncertain model identity. Not an authenticated provider trace.",
+  "score": {
+    "json_only": true,
+    "schema_compliant": true,
+    "valid_path": true,
+    "path_check": {
+      "valid": true,
+      "reason": null,
+      "color": 1,
+      "length": 3
+    }
+  },
+  "edge_colors": [
+    1,
+    1,
+    1
+  ]
+}

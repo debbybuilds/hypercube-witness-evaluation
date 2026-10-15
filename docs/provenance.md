@@ -42,3 +42,9 @@ Record and freeze actual model identifiers/settings before collection, retain al
 ## Manual-app selection before collection
 
 The user reported `GPT 6` for ChatGPT and `Sonnet 5.5` for Claude. These labels are retained exactly as supplied, with exact provider identifiers left null. No independent check of their availability, model routing or hidden settings was performed. This label-based cohort must not be described as an exact-model/API evaluation. The protocol was amended before responses were collected; no mathematical instance or prompt changed.
+
+## Completed manual pilot
+
+Twenty user-pasted responses were collected for ten selected graphs, with labels `Gpt 6.1 Sol Light` and `Sonnet 5.5`. The original 120-trial proposal was reduced after two responses had been seen. All amendments, excluded practice, collection-order deviation and the user-corrected Claude q3-04 paste are retained. No API calls or authenticated provider traces are represented. Exact IDs, original generation times, hidden settings and most context/tool controls remain unknown.
+
+`hypercube/pilot_audit.py` was freshly implemented with AI assistance to rebuild the amended results. It resolves retained source mappings and the transcription correction, recomputes strict scores from raw replies, and separately checks the final JSON line for diagnostic displayed-path validity. The latter is explicitly separated from the frozen extraction policy; extraction failures must not be described as incorrect mathematical paths. `results/pilot-20/` is authoritative for the completed study; earlier collection snapshots are historical.
