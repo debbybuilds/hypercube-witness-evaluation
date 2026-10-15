@@ -27,12 +27,12 @@ def score_response(instance, raw):
     try:
         obj = strict_json(raw)
         json_only = True
-    except ValueError:
+    except (ValueError, RecursionError):
         match = re.fullmatch(r'\s*```(?:json)?\s*(.*?)\s*```\s*',raw,re.S)
         if match:
             try:
                 obj = strict_json(match.group(1))
-            except ValueError:
+            except (ValueError, RecursionError):
                 pass
     path = obj.get('path') if type(obj) is dict else None
     check = check_path(instance,path)

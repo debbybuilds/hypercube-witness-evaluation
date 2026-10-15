@@ -49,11 +49,11 @@
 
 **Files:** `hypercube/__init__.py`, `hypercube/validation.py`, `tests/__init__.py`, `tests/test_validation.py`.
 
-- [ ] Write tests before implementation: a hand-constructed antipodal Q2 coloring with valid path `['00','01','11']`; expected edge counts 12 for Q3 and 32 for Q4; direct rejection of mixed-color, nonadjacent, wrong-antipode, repeated-vertex and malformed paths.
-- [ ] Add fixture-based tests for missing/duplicate/reversed edges, self-loops, invalid n, nonbinary colors, Boolean colors, and broken antipodal pair colors. Include one hand-checked longer-than-n valid simple antipodal path on a small valid coloring.
-- [ ] Run `python3 -m unittest discover -v`; confirm missing validation behavior fails before implementation.
-- [ ] Implement the specified interfaces. Derive topology by independently enumerating all binary-string pairs at Hamming distance one; do not import generation or reference search. Use explicit exceptions rather than assertions for input validation.
-- [ ] Run the whole test suite; require all cases pass. Initialize the local repository with `.gitignore` excluding caches, environments and credentials, then commit this deliverable using an appropriate configured author identity.
+- [x] Write tests before implementation: a hand-constructed antipodal Q2 coloring with valid path `['00','01','11']`; expected edge counts 12 for Q3 and 32 for Q4; direct rejection of mixed-color, nonadjacent, wrong-antipode, repeated-vertex and malformed paths.
+- [x] Add fixture-based tests for missing/duplicate/reversed edges, self-loops, invalid n, nonbinary colors, Boolean colors, and broken antipodal pair colors. Include one hand-checked longer-than-n valid simple antipodal path on a small valid coloring.
+- [x] Run `python3 -m unittest discover -v`; confirm missing validation behavior fails before implementation.
+- [x] Implement the specified interfaces. Derive topology by independently enumerating all binary-string pairs at Hamming distance one; do not import generation or reference search. Use explicit exceptions rather than assertions for input validation.
+- [x] Run the whole test suite; require all cases pass. Initialize the local repository with `.gitignore` excluding caches, environments and credentials, then commit this deliverable using an appropriate configured author identity.
 
 ## Task 2: Reference search and reproducible dataset
 
@@ -61,12 +61,12 @@
 
 **Consumes:** Validation and witness interfaces from Task 1.
 
-- [ ] Write tests first: generated instances satisfy complete topology and antipodality; generation is deterministic; the 20 accepted colorings are distinct within each dimension; injected duplicate candidates are recorded as exclusions; a no-path result stops generation.
-- [ ] Add a second search implemented only in tests that enumerates simple monochromatic paths on fixed Q3 fixtures; compare existence with breadth-first reference search. Verify every returned certificate with direct path validation.
-- [ ] Run the suite and observe missing generator/search behavior fail.
-- [ ] Implement `find_path` using fixed iteration order and predecessor reconstruction. Implement canonical antipodal edge pairing and SHA-256 color selection. Serialize hash inputs as compact UTF-8 JSON arrays; color is the low bit of the digest's first byte. Store the exact algorithm version and hash inputs in documentation.
-- [ ] Implement prompt rendering from validated instance fields only. Describe any simple antipodal monochromatic path as acceptable; use `{"path":["<vertex>","..."]}` as schematic format, with no worked path. Prompt tests vary or remove reference files and confirm prompt bytes are unchanged.
-- [ ] Build the 20-instance dataset, reference certificates, prompts, 120-slot schedule and manifest. Test regeneration to a second temporary directory yields identical bytes for every file, including schedule and manifest. Commit after all tests pass.
+- [x] Write tests first: generated instances satisfy complete topology and antipodality; generation is deterministic; the 20 accepted colorings are distinct within each dimension; injected duplicate candidates are recorded as exclusions; a no-path result stops generation.
+- [x] Add a second search implemented only in tests that enumerates simple monochromatic paths on fixed Q3 fixtures; compare existence with breadth-first reference search. Verify every returned certificate with direct path validation.
+- [x] Run the suite and observe missing generator/search behavior fail.
+- [x] Implement `find_path` using fixed iteration order and predecessor reconstruction. Implement canonical antipodal edge pairing and SHA-256 color selection. Serialize hash inputs as compact UTF-8 JSON arrays; color is the low bit of the digest's first byte. Store the exact algorithm version and hash inputs in documentation.
+- [x] Implement prompt rendering from validated instance fields only. Describe any simple antipodal monochromatic path as acceptable; use `{"path":["<vertex>","..."]}` as schematic format, with no worked path. Prompt tests vary or remove reference files and confirm prompt bytes are unchanged.
+- [x] Build the 20-instance dataset, reference certificates, prompts, 120-slot schedule and manifest. Test regeneration to a second temporary directory yields identical bytes for every file, including schedule and manifest. Commit after all tests pass.
 
 ## Task 3: Response parsing and honest denominators
 
@@ -74,11 +74,11 @@
 
 **Consumes:** Direct path validation and manifest/slot contracts.
 
-- [ ] Write tests first: valid direct JSON passes all three measures; one whole-response JSON fence fails JSON-only but passes schema/path; extra fields fail schema but retain path validity; prose-wrapped JSON, duplicate keys, NaN, invalid types, and refusals fail appropriate checks.
-- [ ] Write denominator tests: 120 empty slots produce 0 received and null observed rates; received empty strings count as received failures; an unresolved transport error is distinct from an unattempted slot; a linked successful replacement counts once and retains the error event. Duplicate IDs, hash mismatches and unlinked retry attempts raise descriptive errors.
-- [ ] Run tests and confirm missing parsing/summary behavior fails.
-- [ ] Implement strict parsing, narrow fence recovery, path scoring, attempt validation and summaries. Never infer model IDs or unknown settings; allow explicit unknown metadata where the protocol permits it. Implement empty collection templates without fabricating responses.
-- [ ] Run the full suite; commit only on success.
+- [x] Write tests first: valid direct JSON passes all three measures; one whole-response JSON fence fails JSON-only but passes schema/path; extra fields fail schema but retain path validity; prose-wrapped JSON, duplicate keys, NaN, invalid types, and refusals fail appropriate checks.
+- [x] Write denominator tests: 120 empty slots produce 0 received and null observed rates; received empty strings count as received failures; an unresolved transport error is distinct from an unattempted slot; a linked successful replacement counts once and retains the error event. Duplicate IDs, hash mismatches and unlinked retry attempts raise descriptive errors.
+- [x] Run tests and confirm missing parsing/summary behavior fails.
+- [x] Implement strict parsing, narrow fence recovery, path scoring, attempt validation and summaries. Never infer model IDs or unknown settings; allow explicit unknown metadata where the protocol permits it. Implement empty collection templates without fabricating responses.
+- [x] Run the full suite; commit only on success.
 
 ## Task 4: CLI, documentation and complete local verification
 
@@ -86,13 +86,13 @@
 
 **Consumes:** Dataset generation, direct checks, scoring and summaries.
 
-- [ ] Write a CLI integration test first: generate into a temporary directory, verify all 20 instances/reference certificates plus prompt/schedule hashes, then score an empty attempts file with zero received outcomes and null observed rates. Alter one generated file and require verification to fail with a useful diagnostic and nonzero exit status.
-- [ ] Run tests and observe absent CLI behavior fail.
-- [ ] Implement the three local commands. Give argparse errors for missing files/malformed JSON; do not print fictitious research results. Limit scoring output to supplied attempts.
-- [ ] Write README instructions for generation, verification, unittest, model configuration, fresh-context manual collection, attempt import and scoring. Explain 120 planned responses, any-path/geodesic distinction, thesis connection, AI assistance, limitations, and that no model measurements exist yet. Link the approved protocol and reference files.
-- [ ] Create `docs/provenance.md` identifying freshly implemented components, newly generated data, standard algorithms, AI assistance and background sources. Check original repository authorship and URL in thesis references before citing it. Review the README so the user's evaluation contribution is explicit and the thesis's reproduced third-party work is not presented as theirs. Do not claim personal authorship of every line or scientific priority.
-- [ ] Run `python3 -m unittest discover -v`, `python3 -m hypercube generate --output data`, `python3 -m hypercube verify --dataset data`, and empty-response scoring. Independently compare regenerated files and verify no reference data is embedded in prompts. Run `git diff --check` and a credential/private-path scan of tracked files.
-- [ ] Review the implementation against every spec section and fix uncovered requirements. Commit verified local files. Deliver links and test evidence; do not create a GitHub repository or contact models in this stage.
+- [x] Write a CLI integration test first: generate into a temporary directory, verify all 20 instances/reference certificates plus prompt/schedule hashes, then score an empty attempts file with zero received outcomes and null observed rates. Alter one generated file and require verification to fail with a useful diagnostic and nonzero exit status.
+- [x] Run tests and observe absent CLI behavior fail.
+- [x] Implement the three local commands. Give argparse errors for missing files/malformed JSON; do not print fictitious research results. Limit scoring output to supplied attempts.
+- [x] Write README instructions for generation, verification, unittest, model configuration, fresh-context manual collection, attempt import and scoring. Explain 120 planned responses, any-path/geodesic distinction, thesis connection, AI assistance, limitations, and that no model measurements exist yet. Link the approved protocol and reference files.
+- [x] Create `docs/provenance.md` identifying freshly implemented components, newly generated data, standard algorithms, AI assistance and background sources. Check original repository authorship and URL in thesis references before citing it. Review the README so the user's evaluation contribution is explicit and the thesis's reproduced third-party work is not presented as theirs. Do not claim personal authorship of every line or scientific priority.
+- [x] Run `python3 -m unittest discover -v`, `python3 -m hypercube generate --output data`, `python3 -m hypercube verify --dataset data`, and empty-response scoring. Independently compare regenerated files and verify no reference data is embedded in prompts. Run `git diff --check` and a credential/private-path scan of tracked files.
+- [x] Review the implementation against every spec section and fix uncovered requirements. Commit verified local files. Deliver links and test evidence; do not create a GitHub repository or contact models in this stage.
 
 ## Plan review
 

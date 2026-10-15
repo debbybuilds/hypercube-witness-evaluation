@@ -13,6 +13,40 @@ def cli(*args):
 
 
 class CliTests(unittest.TestCase):
+    def test_collected_settings_must_match_frozen_configuration(self):
+        from tests.test_scoring import attempt
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); data = root/'data'
+            self.assertEqual(cli('generate', '--output', data).returncode, 0)
+            slot = json.loads((data/'schedule.json').read_text())[0]
+            a = attempt()
+            a.update(slot_id=slot['slot_id'], prompt_sha256=slot['prompt_sha256'],
+                     requested_settings={'temperature': 1}, raw='refusal')
+            attempts = root/'attempts.jsonl'
+            attempts.write_text(json.dumps(a)+'\n')
+            config = {slot['model']: {'provider': a['provider'], 'model_id': a['model_id'],
+                                    'requested_settings': {'temperature': 0}}}
+            other = 'model_b' if slot['model'] == 'model_a' else 'model_a'
+            config[other] = {'provider': 'other-test-provider', 'model_id': 'other-test-model',
+                             'requested_settings': None}
+            models = root/'models.json'; models.write_text(json.dumps(config))
+            run = cli('score','--dataset',data,'--attempts',attempts,'--models',models,
+                      '--output',root/'out.json')
+            self.assertNotEqual(run.returncode, 0)
+            self.assertIn('settings', run.stderr)
+            config[slot['model']]['requested_settings'] = {'temperature': 1}
+            models.write_text(json.dumps(config))
+            run = cli('score','--dataset',data,'--attempts',attempts,'--models',models,
+                      '--output',root/'out.json')
+            self.assertEqual(run.returncode, 0, run.stderr)
+            self.assertEqual(sum(g['received'] for g in json.loads((root/'out.json').read_text())['groups']), 1)
+            del config[other]
+            models.write_text(json.dumps(config))
+            run = cli('score','--dataset',data,'--attempts',attempts,'--models',models,
+                      '--output',root/'out.json')
+            self.assertNotEqual(run.returncode, 0)
+            self.assertIn('both model slots', run.stderr)
+
     def test_generate_verify_empty_scoring_and_tamper_detection(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); data = root/'data'

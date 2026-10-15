@@ -33,6 +33,14 @@ def main():
         attempts = [strict_json(line) for line in args.attempts.read_text(encoding='utf-8').splitlines() if line.strip()]
         if attempts:
             models = strict_json(args.models.read_text(encoding='utf-8'))
+            for label in ('model_a', 'model_b'):
+                config = models.get(label) if type(models) is dict else None
+                if type(config) is not dict or any(type(config.get(k)) is not str or not config[k].strip()
+                                                   for k in ('provider', 'model_id')):
+                    raise ValueError('configure both model slots with exact provider/model identifiers before scoring')
+                if 'requested_settings' not in config or (config['requested_settings'] is not None
+                                                          and type(config['requested_settings']) is not dict):
+                    raise ValueError('configured requested_settings must be an object or null when unknown')
             slots = {s['slot_id']:s for s in schedule}
             for a in attempts:
                 if type(a) is not dict or a.get('slot_id') not in slots:
@@ -42,6 +50,8 @@ def main():
                     raise ValueError('configure exact provider/model identifiers before scoring collected attempts')
                 if (a.get('provider'),a.get('model_id')) != (config['provider'],config['model_id']):
                     raise ValueError('attempt identity differs from frozen model configuration')
+                if a.get('requested_settings') != config['requested_settings']:
+                    raise ValueError('attempt requested settings differ from frozen model configuration')
         result = summarize(schedule,attempts,instances)
         result['dataset_manifest_sha256'] = digest((args.dataset/'manifest.json').read_bytes())
         result['attempts_sha256'] = digest(args.attempts.read_bytes())
@@ -49,7 +59,7 @@ def main():
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_bytes(json_bytes(result))
         print(f'{result["measurement_status"]}; summary saved to {args.output}')
-    except (OSError,ValueError,KeyError,TypeError,AttributeError) as exc:
+    except (OSError,ValueError,KeyError,TypeError,AttributeError,RecursionError) as exc:
         parser.error(str(exc))
 
 

@@ -20,6 +20,11 @@ def attempt(identifier='a1', status='received', replaces=None):
 
 
 class ScoringTests(unittest.TestCase):
+    def test_deeply_nested_response_is_invalid_not_an_analysis_crash(self):
+        raw = '[' * 20000 + ']' * 20000
+        self.assertFalse(score_response(G, raw)['valid_path'])
+        self.assertFalse(score_response(G, '```json\n' + raw + '\n```')['valid_path'])
+
     def test_format_and_mathematics_are_distinct(self):
         self.assertEqual([score_response(G,RAW)[k] for k in ['json_only','schema_compliant','valid_path']], [True]*3)
         fenced = score_response(G,'```json\n'+RAW+'\n```')

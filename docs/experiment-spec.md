@@ -1,6 +1,6 @@
 # Verifying LLM Solutions to Hypercube Coloring Problems
 
-Status: pilot scope approved by the user on 15 October 2026; authorship requirements clarified afterward. Implementation approved and in progress. No model responses collected.
+Status: pilot scope approved by the user on 15 October 2026; authorship requirements clarified afterward. Local toolkit implemented and verified; collection has not begun. No model responses collected.
 
 ## Purpose and thesis connection
 
